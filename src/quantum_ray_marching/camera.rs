@@ -1,5 +1,5 @@
-use std::sync::Arc;
-use rayon::prelude::{IntoParallelIterator, ParallelIterator};
+
+use rayon::prelude::{ParallelIterator};
 use super::{dirction_map::DirMap, ray_packet::RayPacket, voxels::Voxels};
 
 
@@ -32,7 +32,7 @@ impl Camera{
                 let dx  = (2.0 * (px as f32 + 0.5) / self.pixels.x as f32 - 1.0) * (self.fov / 2.0).tan() * self.aspect;
                 let dy = (1.0 - 2.0 * (py as f32 + 0.5) / self.pixels.y as f32) * (self.fov / 2.0).tan();
                 let ray_dir = (self.matrix * glm::vec4(dx,dy,-1.0, 0.0)).xyz();
-                if let Some((t, (x,y,z))) = voxels.intersect_ray(self.position, glm::vec3(1.0,1.0,1.0).component_div(&ray_dir)) {
+                if let Some((t, (_x,_y,_z))) = voxels.intersect_ray(self.position, glm::vec3(1.0,1.0,1.0).component_div(&ray_dir)) {
                     let p = voxels.convert_to_voxel_space(self.position + t * ray_dir);
                     Some((glm::UVec2::new(px ,py), RayPacket::new(p, dir_map.map(ray_dir.xyz()))))
                 }

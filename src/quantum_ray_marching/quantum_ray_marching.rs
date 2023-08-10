@@ -6,18 +6,18 @@
 //     }, shaders,
 // };
 // use egui::{DragValue, Ui, Button, epaint::tessellator::PathType};
-use fixed::{types::extra::{U3, U0}, FixedU8, traits::Fixed, FixedU16};
-use glm::{distance, Vec3, Vec2, UVec2};
-use indicatif::{ProgressBar, ProgressIterator, ProgressStyle, ParallelProgressIterator};
+
+use glm::{Vec3};
+use indicatif::{ProgressIterator, ProgressStyle, ParallelProgressIterator};
 use itertools::Itertools;
-use ndarray::Array;
-use rayon::prelude::{IntoParallelRefIterator, IntoParallelRefMutIterator, ParallelIterator, IntoParallelIterator, IndexedParallelIterator};
-use serde::Serialize;
+
+use rayon::prelude::{ParallelIterator, IntoParallelIterator, IndexedParallelIterator};
+
 // use vulkano::{command_buffer::{SecondaryAutoCommandBuffer, AutoCommandBufferBuilder, CommandBufferUsage, CommandBufferInheritanceInfo}, pipeline::{GraphicsPipeline, graphics::{vertex_input::BuffersDefinition, input_assembly::{InputAssemblyState, PrimitiveTopology}, viewport::ViewportState, depth_stencil::DepthStencilState, rasterization::{PolygonMode, RasterizationState}}, Pipeline}, render_pass::Subpass, buffer::{CpuAccessibleBuffer, BufferUsage, TypedBufferAccess}, shader::reflect};
-use std::{f32::consts::PI, sync::Arc, fs::{File, self}, io::Write, collections::HashMap};
-use std::io::Cursor;
-use image::{io::Reader as ImageReader, ImageBuffer, Luma, GrayImage, RgbImage};
-use super::{coins::QuantumCoin, camera::Camera, ray_packet::RayPacket, dirction_map::DirMap, path::QuantumSample, voxels::Voxels};
+use std::{fs::{File}, io::Write};
+
+use image::{RgbImage};
+use super::{camera::Camera, ray_packet::RayPacket, dirction_map::DirMap, path::QuantumSample, voxels::Voxels};
 
 pub struct QuantumRayMarcherer {
     direction_num: usize,

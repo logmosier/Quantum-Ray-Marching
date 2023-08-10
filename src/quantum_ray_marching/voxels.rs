@@ -1,16 +1,16 @@
 
-use std::{cell::RefCell, sync::Arc, rc::Rc, ops::{Div, Range, RangeInclusive}};
+use std::{sync::Arc, ops::{Range}};
 
 use az::Cast;
-use fixed::{FixedU16, types::extra::U3, types::extra::U0, traits::Fixed};
-use glm::{Vec3, IVec3, UVec3, Vec2};
-use image::{ImageBuffer, Rgba};
-use na::Vector3;
-use ndarray::{Array1, Array3, Axis, s};
+use fixed::{traits::Fixed};
+use glm::{Vec3, UVec3};
+
+
+use ndarray::{Array3};
 // use az::Cast;
 
 
-use itertools::{Itertools, min};
+use itertools::{Itertools};
 use rayon::prelude::*;
 
 use super::{coins::QuantumCoin, ray_packet::RayPacketValue, object::Object};
@@ -212,7 +212,7 @@ impl Voxels{
         }
         min_dist
     }
-    fn get_normal(position: Vec3, objects: &Vec<Arc<Object>>, h: &f32) -> Vec3{
+    fn get_normal(position: Vec3, objects: &Vec<Arc<Object>>, _h: &f32) -> Vec3{
         // https://iquilezles.org/articles/normalsSDF/
         // let k = Vec2::new(1.0, -1.0);
         // let v = (
