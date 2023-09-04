@@ -6,7 +6,6 @@ use super::{mesh::Mesh, voxels::Voxel};
 
 // #[derive(Send, Sync)]
 pub struct Object{
-    pub name: String,
     pub mesh: Arc<Mesh>,
     pub transform: glm::Mat4
 }

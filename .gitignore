@@ -1,2 +1,5 @@
 */target
-*.obj
+*/obj/*
+*.png
+*/paths.json
+*.pyc

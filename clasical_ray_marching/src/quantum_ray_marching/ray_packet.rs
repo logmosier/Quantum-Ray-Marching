@@ -29,7 +29,7 @@ impl RayPacket{
                 break;
             }
             packet.position = d_map.step(packet.position, packet.direction); 
-            //println!("cheating {:?} {:?}, {:?}", cheat, packet, voxels.get_coin(packet.position));
+            ////println!("cheating {:?} {:?}, {:?}", cheat, packet, voxels.get_coin(packet.position));
         }
 
         let reflection = self.get_sample_diffuse(voxels);
@@ -37,7 +37,7 @@ impl RayPacket{
 
         current_sample.update(reflection, emited);
 
-        // println!("depth: {}, emited: {:?}, reflection: {:?}, r: {:?}, sample: {:?}", depth, emited, reflection, current_sample.r, current_sample.value);
+        //println!("depth: {}, emited: {:?}, reflection: {:?}, r: {:?}, sample: {:?}", depth, emited, reflection, current_sample.r, current_sample.value);
         if depth == 0 {
             vec!(current_sample)
         }

@@ -1,6 +1,6 @@
 use serde::Serialize;
 
-type SamplePath = Vec<(glm::Vec3, glm::Vec3)>;
+pub type SamplePath = Vec<(glm::Vec3, glm::Vec3)>;
 #[derive(Clone, Debug, Serialize)]
 pub struct QuantumSample {
     pub r: glm::Vec3,

@@ -78,6 +78,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
+name = "clasical_ray_marching"
+version = "0.1.0"
+dependencies = [
+ "az",
+ "fixed",
+ "image",
+ "indicatif",
+ "itertools",
+ "nalgebra",
+ "nalgebra-glm",
+ "ndarray",
+ "rand",
+ "rayon",
+ "serde",
+ "serde_json",
+ "tobj",
+]
+
+[[package]]
 name = "color_quant"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -606,25 +625,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7f6d64c71eb498fe9eae14ce4ec935c555749aef511cca85b5568910d6e48001"
 dependencies = [
  "bytemuck",
-]
-
-[[package]]
-name = "quantum_ray_marching"
-version = "0.1.0"
-dependencies = [
- "az",
- "fixed",
- "image",
- "indicatif",
- "itertools",
- "nalgebra",
- "nalgebra-glm",
- "ndarray",
- "rand",
- "rayon",
- "serde",
- "serde_json",
- "tobj",
 ]
 
 [[package]]

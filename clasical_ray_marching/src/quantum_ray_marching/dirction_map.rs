@@ -1,9 +1,10 @@
 use std::f32::consts::PI;
 
-use fixed::FixedU16;
+use fixed::{FixedU16, FixedI16};
 use glm::{Vec3, distance};
 use itertools::Itertools;
-use super::ray_packet::RayPacketValue;
+
+use super::ray_packet::{RayPacketValue, RayPacket};
 
 
 pub struct DirMap {
@@ -17,10 +18,12 @@ impl DirMap {
             (0..num_directions)
                 .into_iter()
                 .map(|_| {
+                    let theta = rand::random::<f32>() * 2.0 * PI;
+                    let phi = (rand::random::<f32>() * 2.0 - 1.0).acos();
                     Vec3::new(
-                        rand::random::<f32>(),
-                        rand::random::<f32>(),
-                        rand::random::<f32>(),
+                        phi.sin() * theta.cos(),
+                        phi.sin() * theta.sin(),
+                        phi.cos()
                     )
                 })
                 .collect()
@@ -45,9 +48,15 @@ impl DirMap {
         }
     }
 
+    // pub fn step(&self, p: glm::TVec3<RayPacketValue>, dir: usize) -> glm::TVec3<RayPacketValue> {
+    //     let dir = self.directions[dir].map(|v| FixedU16::from_num(v));
+    //     p + dir
+    // }
     pub fn step(&self, p: glm::TVec3<RayPacketValue>, dir: usize) -> glm::TVec3<RayPacketValue> {
-        let dir = self.directions[dir].map(|v| FixedU16::from_num(v));
-        p + dir
+        // println!("p: {:?}, dir: {:?}", p, dir);
+        
+        glm::TVec3::from_iterator(self.directions[dir].iter().zip(p.iter()).map(|(d, p)| if let Some(new_p) = p.checked_sub_signed(FixedI16::from_num(*d)) {new_p} else { //println!("wrap around") ; 
+        FixedU16::from_num(0)}))
     }
     pub fn map(&self, dir: Vec3) -> usize {
         self.directions

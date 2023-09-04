@@ -1,5 +1,7 @@
 
 
+use std::sync::Arc;
+
 use itertools::Itertools;
 
 use tobj;
@@ -30,7 +32,7 @@ impl Mesh{
         Mesh{name, vertices, bounding_box: Voxel::new(min, max)}
     }
 
-    pub fn from_obj(file_name: &String) -> Vec<Mesh>{
+    pub fn from_obj(file_name: &String) -> Vec<Arc<Mesh>>{
         let obj_flie = tobj::load_obj(file_name, &tobj::GPU_LOAD_OPTIONS);
 
         let (models, materials) = obj_flie.unwrap();
@@ -70,7 +72,7 @@ impl Mesh{
                 }
             }
             (m.name.clone(), vertices)
-        }).map(|(name,verts)| Mesh::new(name, verts)).collect::<Vec<Mesh>>()
+        }).map(|(name,verts)| Arc::new(Mesh::new(name, verts))).collect::<Vec<Arc<Mesh>>>()
 
         // for (i, m) in materials.iter().enumerate() {
         //     println!("material[{}].name = \'{}\'", i, m.name);
