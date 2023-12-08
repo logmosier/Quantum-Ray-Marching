@@ -88,7 +88,7 @@ def lambertian_coin(normal): # convert to coin from new work?
                 if non_zero_index in negative_terms[negative_terms_index]:
                     matrix[i][j] *= -1
                 non_zero_index += 1
-
+    print(matrix)
     qc.unitary(leading_term * matrix, qc.qubits)
     return qc.to_gate(label="lambertian_coin_"+str(normal))
 
